@@ -1,0 +1,1381 @@
+
+                                      <html>
+                                      <head>
+                                          <title>denúncia-082</title>
+                                      <style>
+                                      body {
+                                        background-color: #36393e;
+                                        color: #dcddde;
+                                        font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                                        font-size: 17px;
+                                        font-weight: 400;
+                                        margin: 0;
+                                        padding: 0;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        height: 100vh;
+                                    }
+                  
+                                        .togglePassword {
+                                          cursor: pointer;
+                                          position: absolute;
+                                          margin-left: -30px;
+                                          margin-top: 10px;
+                                          color: #007bff;
+                                      }
+                    
+                                
+                                        #protecaoSenha {
+                                            display: flex;
+                                            flex-direction: column; /* Mantém os elementos em uma coluna */
+                                            align-items: normal; /* Centraliza os elementos horizontalmente */
+                                            gap: 10px; /* Espaçamento entre os elementos */
+                                            position: relative; /* Para posicionar corretamente o ícone de visualização da senha */
+                                        }
+                                
+                                        .mensagemErro {
+                                        font-size: 13px;
+                  
+                                            color: red;
+                                            display: none; /* Inicialmente escondido */
+                                        }
+                            
+                                    input[type=password] {
+                                        padding: 10px;
+                                        border-radius: 20px;
+                                        border: 1px solid #ccc;
+                                        width: 200px; /* Ajuste conforme necessário */
+                                        box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adiciona um leve sombreamento */
+                                    }
+                            
+                                    button {
+                                        padding: 10px 20px;
+                                        border-radius: 20px;
+                                        border: none;
+                                        background-color: #007bff;
+                                        color: white;
+                                        cursor: pointer;
+                                        box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombreamento */
+                                    }
+                            
+                                    
+                                    #protecaoSenha {
+                                        background-color: #ffffff;
+                                        padding: 40px;
+                                        border-radius: 50px;
+                                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 30px;
+                                        backdrop-filter: blur(10px);
+                                    }
+                            
+                                    #protecaoSenha input[type="password"] {
+                                      padding: 8px 25px; /* Altura diminuída */
+                                      border: 1px solid #ccc;
+                                      border-radius: 15px;
+                                      width: 200px; /* Largura aumentada */
+                                      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+                                      outline: none;
+                                      transition: border-color 0.3s;
+                                      color: #555;
+                                      font-size: 18px;
+                                  }
+                            
+                                    #protecaoSenha input[type="password"]::placeholder {
+                                        color: #bbb;
+                                    }
+                            
+                                    #protecaoSenha input[type="password"]:focus {
+                                        border-color: #007bff;
+                                    }
+                            
+                                    #protecaoSenha button {
+                                        font-size: 13px;
+                                        padding: 14px 30px;
+                                        background-color: #007bff;
+                                        color: white;
+                                        border: none;
+                                        border-radius: 15px;
+                                        cursor: pointer;
+                                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                                        transition: background-color 0.4s, transform 0.4s;
+                                    }
+                            
+                                    #protecaoSenha button:hover {
+                                        background-color: #0056b3;
+                                        transform: translateY(-2px);
+                                    }
+                            
+                                    #conteudoProtegido {
+                                      display: none;
+                  
+                                    }
+
+                                    #myModal {
+                                      display: none;
+                                      opacity: 0;
+                                      visibility: hidden;
+                                      transition: opacity 0.5s linear, visibility 0s linear 0.5s; /* Ajuste para visibilidade após a transição de opacidade */
+                                    }
+
+                                    #myModal.show {
+                                      display: block; 
+                                      opacity: 1; 
+                                      visibility: visible; 
+                                    }
+
+                                              a {
+                                                  color: #00aff4;
+                                                  text-decoration: none;
+                                              }
+
+                                              a:hover {
+                                                  text-decoration: underline;
+                                              }
+
+                                              img {
+                                                  object-fit: contain;
+                                              }
+
+                                              .markdown {
+                                                      max-width: 100%;
+                                                      line-height: 1.3;
+                                                      overflow-wrap: break-word;
+                                                      font-family: Arial, sans-serif;
+                                                      font-size: 16px;
+                                                      font-weight: normal;
+                                                      text-align: left;
+                                                      margin: 1px;
+                                                      padding: 4px;
+                                                      text-decoration: none;
+                                                      text-transform: none;
+                                                      letter-spacing: normal;
+                                                      word-spacing: normal;
+                                                      text-shadow: none;
+                                                      white-space: normal;
+                                                      background-color: transparent;
+                                                      border: none;
+                                              }
+
+                                              .preserve-whitespace {
+                                                  white-space: pre-line;
+                                              }
+
+
+                                              .spoiler-text {
+                                                  background-color: rgba(255, 255, 255, 0.1);
+                                                  border-radius: 3px;
+                                              }
+
+                                              .spoiler-text--hidden {
+                                                  cursor: pointer;
+                                                  background-color: #202225;
+                                                  color: rgba(0, 0, 0, 0);
+                                              }
+
+                                              .spoiler-text--hidden:hover {
+                                                  background-color: rgba(32, 34, 37, 0.8);
+                                              }
+
+                                              .spoiler-text--hidden::selection {
+                                                  color: rgba(0, 0, 0, 0);
+                                              }
+
+                                              .quote {
+                                                border-left: 5px solid #5C5E62;
+                                                color: #DCDDDE;
+                                                padding-left: 8px;
+                                                margin: 0 10px; 
+                                                border-radius: 6px;
+                                                display: block;
+                                                box-sizing: border-box; 
+                                              }
+                                              
+                                              .quote::before {
+                                                  color: #7a7a7a;
+                                                  font-size: 0.85em;
+                                                  content: "ㅤ/quote mensagemㅤ";
+                                                  margin-right: 0.5em;
+                                                  border: 2px solid #4f545c;
+                                                  border-radius: 5px;
+                                              }
+
+                                              .pre {
+                                                  background-color: #1e1f22;
+                                                  font-family: "Consolas", "Courier New", Courier, monospace;
+                                              }
+
+                                              .pre--multiline {
+                                                  margin-top: 0.25em;
+                                                  margin-bottom: 0.25em;
+                                                  margin-right: 0.06em;
+                                                  margin-left: 0.06em;
+                                                  margin-bottom: 0.25em;
+                                                  padding: 0.5em;
+                                                  border: 2px solid #313338;
+                                                  border-radius: 10px;
+                                                  background-color: #313338;
+                                                  color: #bbbbbb;
+                                              }
+                                              
+                                              .pre--multiline.hljs {
+                                                  background-color: #1e1f22;
+                                                  color: #49bbbe;
+                                              }
+
+                                              .pre--inline {
+                                                  background-color: #2b2d31;
+                                                  color: #bbbbbb;
+                                                  padding: 1px 5px;  /* Aumentado o valor do padding-left e padding-right */
+                                                  border-radius: 6px;
+                                              }
+                                              
+                                              .mention {
+                                                  border-radius: 3px;
+                                                  padding: 0 2px;
+                                                  color: #7289da;
+                                                  background-color: rgba(114, 137, 218, .1);
+                                                  font-weight: 500;
+                                              }
+
+                                              .timestamp {
+                                                  border-radius: 3px;
+                                                  padding: 0 2px;
+                                                  background-color: rgba(255, 255, 255, 0.06);
+                                              }
+
+                                              .emoji {
+                                                  width: 1.325em;
+                                                  height: 1.325em;
+                                                  margin: 0 0.06em;
+                                                  vertical-align: -0.4em;
+                                              }
+
+                                              .emoji--small {
+                                                  width: 1em;
+                                                  height: 1em;
+                                              }
+
+                                              .emoji--large {
+                                                  width: 2.8em;
+                                                  height: 2.8em;
+                                              }
+
+                                              .preamble {
+                                                  display: grid;
+                                                  margin: 0 0.3em 0.6em 0.3em;
+                                                  max-width: 100%;
+                                                  grid-template-columns: auto 1fr;
+                                              }
+
+                                              .preamble__guild-icon-container {
+                                                  grid-column: 1;
+                                              }
+
+                                              .preamble__guild-icon {
+                                                  max-width: 88px;
+                                                  max-height: 88px;
+                                              }
+
+                                              .preamble__entries-container {
+                                                  grid-column: 2;
+                                                  margin-left: 0.6em;
+                                              }
+
+                                              .preamble__entry {
+                                                  font-size: 1.4em;
+                                                  color: #ffffff;
+                                              }
+
+                                              .preamble__entry--small {
+                                                  font-size: 1em;
+                                              }
+
+                                              .chatlog {
+                                                  max-width: 100%;
+                                              }
+
+                                              .chatlog__message-group {
+                                                  display: grid;
+                                                  margin: 0 0.6em;
+                                                  padding: 0.9em 0;
+                                                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                                                  grid-template-columns: auto 1fr;
+                                              }
+
+                                              .chatlog__reference-symbol {
+                                                  grid-column: 1;
+                                                  margin: 8px 4px 4px 18px;
+                                                  border-left: 2px solid #4f545c;
+                                                  border-top: 2px solid #4f545c;
+                                                  border-radius: 8px 0 0 0;
+                                              }
+
+                                              .chatlog__reference-symbol-below {
+                                                  grid-column: 1;
+                                                  margin: -10px 4px 10px 18px;
+                                                  border-left: 2px solid #4f545c;
+                                                  border-bottom: 2px solid #4f545c; 
+                                                  margin-left: 20px; 
+                                                  margin-right: 5px; 
+                                              }
+
+                                              .chatlog__reference {
+                                                  display: flex;
+                                                  grid-column: 2;
+                                                  margin-bottom: 0.25em;
+                                                  font-size: 0.875em;
+                                                  white-space: nowrap;
+                                                  overflow: hidden;
+                                                  text-overflow: ellipsis;
+                                                  align-items: center;
+                                                  color: #b5b6b8;
+                                              }
+
+                                              .chatlog__reference-avatar {
+                                                  border-radius: 50%;
+                                                  width: 16px;
+                                                  height: 16px;
+                                                  margin-right: 0.25em;
+                                              }
+
+                                              .chatlog__reference-name {
+                                                  margin-right: 0.3em;
+                                                  font-weight: 600;
+                                                  font-size: 15px; 
+
+                                              }
+
+                                              .chatlog__reference-content {
+                                                  overflow: hidden;
+                                                  text-overflow: ellipsis;
+                                              }
+
+                                              .chatlog__reference-content a:hover {
+                                                  text-decoration: none;
+                                              }
+
+                                              .chatlog__reference-link {
+                                                  cursor: pointer;
+                                                  color: #b5b6b8;
+                                              }
+
+                                              .chatlog__reference-link * {
+                                                  display: inline;
+                                                  pointer-events: none;
+                                              }
+
+                                              .chatlog__reference-link:hover {
+                                                  color: #ffffff;
+                                              }
+
+                                              .chatlog__reference-link:hover *:not(.spoiler-text) {
+                                                  color: #ffffff;
+                                              }
+
+                                              .chatlog__reference-edited-timestamp {
+                                                  margin-left: 0.25em;
+                                                  font-size: 0.8em;
+                                                  color: rgba(255, 255, 255, 0.2);
+                                              }
+
+                                              .chatlog__role {
+                                                  margin-left: 0.35em;
+                                                  font-size: 1.00em;
+                                                  color: rgba(255, 255, 75, 0.35);
+                                              }
+
+                                              .chatlog__author-avatar-container {
+                                                  grid-column: 1;
+                                                  width: 40px;
+                                                  height: 40px;
+                                                  margin-right: 16px;
+                                              }
+
+                                              .chatlog__author-avatar {
+                                                  border-radius: 50%;
+                                                  width: 40px;
+                                                  height: 40px;
+                                                  transition: transform 0.3s ease;
+                                                  transform: rotate(10deg);
+                                              }
+
+                                              .chatlog__author-avatar:hover {
+                                                  transform: scale(1.34); 
+                                              }
+
+                                              .chatlog__messages {
+                                                  grid-column: 2;
+                                                  min-width: 50%;
+                                              }
+
+                                              @keyframes softPulse {
+                                                  0% { text-shadow: 0 0 1px #ffffff; }
+                                                  50% { text-shadow: 0 0 2px #ffffff, 0 0 16px #ffffff; }
+                                                  100% { text-shadow: 0 0 1px #ffffff; }
+                                              }
+
+                                              .chatlog__author-name {
+                                                  font-weight: 600;
+                                                  color: #ffffff;
+                                                  font-size: 14.2px;
+                                                  letter-spacing: 0.0px;
+                                                  animation: softPulse 3s infinite;
+                                              }
+
+                                              .chatlog__timestamp {
+                                                  margin-left: 0.3em;
+                                                  font-size: 0.72em;
+                                                  color: rgba(255, 255, 255, 0.2);
+                                              }
+
+                                              .chatlog__message {
+                                                  padding: 0.1em 0.0em;
+                                                  margin: 0 -0.6em;
+                                                  background-color: transparent;
+                                                  transition: background-color 1s ease;
+                                              }
+
+                                              .chatlog__message--highlighted {
+                                                  background-color: rgba(114, 137, 218, 0.2);
+                                              }
+
+                                              .chatlog__message--pinned {
+                                                  background-color: rgba(249, 168, 37, 0.05);
+                                              }
+
+                                              .chatlog__content {
+                                                  font-size: 0.85em;
+                                                  word-wrap: break-word;
+                                              }
+
+                                              .chatlog__edited-timestamp {
+                                                  margin-left: 0.15em;
+                                                  font-size: 0.8em;
+                                              }
+
+                                              .chatlog__attachment {
+                                                  display: inline-block;
+                                                  position: relative;
+                                                  margin-top: 0.3em;
+                                                  border-radius: 3px;
+                                                  overflow: hidden;
+                                              }
+
+                                              .chatlog__attachment--hidden {
+                                                  cursor: pointer;
+                                                  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+                                              }
+
+                                              .chatlog__attachment--hidden * {
+                                                  pointer-events: none;
+                                              }
+
+                                              .chatlog__attachment-spoiler-caption {
+                                                  display: none;
+                                                  z-index: 999;
+                                                  position: absolute;
+                                                  left: 50%;
+                                                  top: 50%;
+                                                  transform: translate(-50%, -50%);
+                                                  padding: 0.4em 0.8em;
+                                                  background-color: rgba(0, 0, 0, 0.9);
+                                                  border-radius: 20px;
+                                                  color: #dcddde;
+                                                  font-size: 0.9em;
+                                                  font-weight: 600;
+                                                  letter-spacing: 0.05em;
+                                              }
+
+                                              .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+                                                  display: block;
+                                              }
+
+                                              .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+                                                  color: #fff;
+                                              }
+
+                                              .chatlog__attachment-media {
+                                                  vertical-align: top;
+                                                  max-width: 45vw;
+                                                  max-height: 500px;
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__attachment--hidden .chatlog__attachment-media {
+                                                  filter: blur(44px);
+                                              }
+
+                                              .chatlog__attachment-generic {
+                                                  width: 100%;
+                                                  max-width: 520px;
+                                                  height: 40px;
+                                                  padding: 10px;
+                                                  background-color: #2f3136;
+                                                  border: 1px solid #292b2f;
+                                                  border-radius: 3px;
+                                                  overflow: hidden;
+                                              }
+
+                                              .chatlog__attachment--hidden .chatlog__attachment-generic {
+                                                  filter: blur(44px);
+                                              }
+
+                                              .chatlog__attachment-generic-icon {
+                                                  float: left;
+                                                  width: 30px;
+                                                  height: 100%;
+                                                  margin-right: 10px;
+                                              }
+
+                                              .chatlog__attachment-generic-size {
+                                                  color: #72767d;
+                                                  font-size: 12px;
+                                              }
+
+                                              .chatlog__attachment-generic-name {
+                                                  overflow: hidden;
+                                                  white-space: nowrap;
+                                                  text-overflow: ellipsis;
+                                              }
+
+                                              .chatlog__edited-timestamp {
+                                                  color: rgba(255, 255, 255, 0.2);
+                                              }
+
+                                              .chatlog__embed {
+                                                  display: flex;
+                                                  margin-top: 0.3em;
+                                                  max-width: 520px;
+                                                  border-radius: 5px; 
+                                              }
+
+
+                                              .chatlog__embed-thumbnail img {
+                                                  max-width: 80px; 
+                                                  float: left;
+                                                  margin-right: 10px;
+                                                  border-radius: 5px; 
+                                              }
+
+                                              .chatlog__embed-color-pill {
+                                                  flex-shrink: 0;
+                                                  width: 0.25em;
+                                                  border-top-left-radius: 3px;
+                                                  border-bottom-left-radius: 3px;
+                                              }
+
+                                              .chatlog__embed-color-pill--default {
+                                                  background-color: #202225;
+                                              }
+
+                                              .chatlog__embed-content-container {
+                                                  background-color: #2b2d31;
+                                                  padding: 5px;
+                                                  border: 1px solid #4A4D52;
+                                                  border-radius: 5px;
+                                              }
+                                              
+
+                                              .chatlog__embed-content {
+                                                  display: flex;
+                                                  width: 100%;
+                                              }
+
+                                              .chatlog__embed-text {
+                                                  flex: 1;
+                                              }
+
+                                              .adjusted-title {
+                                                  padding-left: 10px;
+                                              }
+                                              
+                                              .chatlog__embed-author {
+                                                  display: flex;
+                                                  margin-bottom: 0.3em;
+                                                  align-items: center;
+                                              }
+
+                                              .chatlog__embed-author-icon {
+                                                  margin-right: 0.5em;
+                                                  width: 20px;
+                                                  height: 20px;
+                                                  border-radius: 50%;
+                                              }
+
+                                              .chatlog__embed-author-name {
+                                                  font-size: 0.875em;
+                                                  font-weight: 600;
+                                                  color: #ffffff
+                                              }
+
+                                              .chatlog__embed-author-name-link {
+                                                  color: #ffffff;
+                                              }
+
+                                              .chatlog__embed-title {
+                                                  margin-bottom: 0.2em;
+                                                  font-size: 0.875em;
+                                                  font-weight: 600;
+                                                  color: #ffffff;
+                                                  padding-left: 10px;
+                                              }
+
+                                              .chatlog__embed-title a {
+                                                  color: #89CFF0;
+                                                  text-decoration: none;
+                                                  font-weight: bold;
+                                              }
+
+                                              .chatlog__embed-title a:hover {
+                                                  text-decoration: underline;
+                                              }
+
+                                              .chatlog__embed-description {
+                                                  font-weight: 500;
+                                                  font-size: 0.85em;
+                                                  color: #dcddde;
+                                                  padding-left: 10px;
+                                              }
+
+                                              .chatlog__embed-fields {
+                                                  display: flex;
+                                                  flex-wrap: wrap;
+                                                  gap: 0 0.5em;
+                                              }
+
+                                              .chatlog__embed-field {
+                                                  flex: 0;
+                                                  min-width: 100%;
+                                                  max-width: 506px;
+                                                  padding-top: 0.6em;
+                                                  font-size: 0.875em;
+                                              }
+
+                                              .chatlog__embed-field--inline {
+                                                  flex: 1;
+                                                  flex-basis: auto;
+                                                  min-width: 150px;
+                                              }
+
+                                              .chatlog__embed-field-name {
+                                                  margin-bottom: 0.2em;
+                                                  font-weight: 600;
+                                                  color: #ffffff;
+                                              }
+
+                                              .chatlog__embed-field-value {
+                                                  font-weight: 500;
+                                                  color: #dcddde;
+                                              }
+
+                                              .chatlog__embed-thumbnail {
+                                                  flex: 0;
+                                                  margin-left: 0.1em;
+                                                  max-width: 80px;
+                                                  max-height: 80px;
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__embed-image-container {
+                                                  margin-top: 0.6em;
+                                              }
+
+                                              .chatlog__embed-image {
+                                                  max-width: 500px;
+                                                  max-height: 400px;
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__embed-footer {
+                                                  margin-top: 0.6em;
+                                                  color: #dcddde;
+                                              }
+
+                                              .chatlog__embed-footer-icon {
+                                                  margin-right: 0.2em;
+                                                  width: 20px;
+                                                  height: 20px;
+                                                  border-radius: 50%;
+                                                  vertical-align: middle;
+                                              }
+
+                                              .chatlog__embed-footer-text {
+                                                  vertical-align: middle;
+                                                  font-size: 0.75em;
+                                                  font-weight: 500;
+                                              }
+
+                                              .chatlog__embed-plainimage {
+                                                  vertical-align: top;
+                                                  max-width: 45vw;
+                                                  max-height: 500px;
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__embed-spotify {
+                                                  border: 0;
+                                              }
+
+                                              .chatlog__embed-youtube-container {
+                                                  margin-top: 0.6em;
+                                              }
+
+                                              .chatlog__embed-youtube {
+                                                  border: 0;
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__reactions {
+                                                  display: flex;
+                                              }
+
+                                              .chatlog__reaction {
+                                                  display: flex;
+                                                  align-items: center;
+                                                  margin: 0.35em 0.1em 0.1em 0.1em;
+                                                  padding: 0.2em 0.35em;
+                                                  background-color: rgba(255, 255, 255, 0.05);
+                                                  border-radius: 3px;
+                                              }
+
+                                              .chatlog__reaction-count {
+                                                  min-width: 9px;
+                                                  margin-left: 0.35em;
+                                                  font-size: 0.875em;
+                                                  color: rgba(255, 255, 255, 0.3);
+                                              }
+
+                                              .chatlog__bot-tag {
+                                                  position: relative;
+                                                  top: -.1em;
+                                                  margin-left: 0.3em;
+                                                  padding: 0.05em 0.3em;
+                                                  border-radius: 3px;
+                                                  line-height: 1.3;
+                                                  background-color: #5865F2;
+                                                  color: #ffffff;
+                                                  font-size: 0.625em;
+                                                  font-weight: 500;
+                                              }
+
+                                              .postamble {
+                                                  margin: 1.4em 0.3em 0.6em 0.3em;
+                                                  padding: 1em;
+                                                  border-top: 1px solid rgba(255, 255, 255, 0.1);
+                                              }
+
+                                              .postamble__entry {
+                                                  color: #ffffff;
+                                              }
+
+                                              @keyframes rainbow {
+                                                  0% {border-top-color: #f06;}
+                                                  14% {border-top-color: #f80;}
+                                                  28% {border-top-color: #ff0;}
+                                                  42% {border-top-color: #8f0;}
+                                                  57% {border-top-color: #09f;}
+                                                  71% {border-top-color: #607;}
+                                                  85% {border-top-color: #f09;}
+                                                  100% {border-top-color: #f06;}
+                                              }
+                                              
+                                              .hr {
+                                                  border: none; 
+                                                  border-top: 2px solid #399; 
+                                                  width: 50%;
+                                                  margin: 15px auto; 
+                                                  animation: rainbow 10s linear infinite; /* Efeito rainbow com 10 segundos de duração */
+                                              }
+                                      
+
+                                              .header {
+                                                  background-color: #f1f1f1;
+                                                  padding: 10px;
+                                                  text-align: center;
+                                                  border-bottom: 2px solid #ddd;
+                                                  margin-bottom: 20px;
+                                                  font-size: 1.5rem;
+                                                  transition: background-color 0.4s ease;
+                                              }
+                                              
+                                            
+                                              
+                                              .header img {
+                                                  border-radius: 50%;
+                                                  box-shadow: 0px 3px 8px 0px rgba(0, 0, 0, 0.3);
+                                                  transform: rotate(0deg) scale(1.30);
+                                                  transition: transform 2s, box-shadow 2s;
+                                              }
+                                              
+                                              @keyframes neonSnake {
+                                                  0% {
+                                                      background-position: 200% 0;
+                                                  }
+                                                  100% {
+                                                      background-position: -100% 0;
+                                                  }
+                                              }
+
+                                              .guild-name {
+                                                  font-size: 1.5rem; 
+                                                  color: transparent;
+                                                  font-weight: bold; 
+                                                  margin-top: 10px;
+                                                  opacity: 1.0;
+                                                  transition: opacity 2s ease-in-out;
+
+                                                  /* Gradiente com cores mais intensas e vibrantes */
+                                                  background: linear-gradient(90deg, 
+                                                      rgba(255,0,0,1), 
+                                                      rgba(255,165,0,1), 
+                                                      rgba(255,255,0,1), 
+                                                      rgba(152,251,152,1), 
+                                                      rgba(0,128,0,1), 
+                                                      rgba(32,178,170,1), 
+                                                      rgba(0,0,255,1), 
+                                                      rgba(75,0,130,1), 
+                                                      rgba(143,0,255,1), 
+                                                      rgba(238,130,238,1),
+                                                      rgba(255,0,0,1));
+                                                  background-size: 300% auto; 
+                                                  animation: neonSnake 20s infinite;
+
+                                                  -webkit-background-clip: text;
+                                                  background-clip: text;
+
+                                                  text-shadow: 0 0 5px rgba(173,216,230,0.6);
+
+                                              }
+
+                                              
+                                              
+                                              .header img:hover {
+                                                  transform: rotate(360deg) scale(1.50);
+                                                  animation: rainbowRotate 24s infinite;
+                                              
+                                              }
+                                              
+                                              .header img:hover + .guild-name {
+                                                  opacity: 1; 
+                                              }
+                                              
+                                              .header:hover {
+                                                  background-color: #e9e9e9;
+                                              }
+                                              
+
+                                              @keyframes rainbowSlide {
+                                                  0% {background-position: 100% 0%, 100% 100%;}
+                                                  100% {background-position: 0% 0%, 0% 100%;}
+                                              }
+                                              
+                                              .channel-name {
+                                                  font-weight: bold;
+                                                  color: #333333;
+                                                  font-size: 2.4rem;
+                                                  background-image: 
+                                                      linear-gradient(to right, 
+                                                          #FFA07A, #FFEC8B, #98FB98, #87CEFA, #DDA0DD, #FFB6C1, #FFDAB9, #C1FFC1, #B0E0E6, #FFA07A
+                                                      ), 
+                                                      linear-gradient(to right, 
+                                                          #FFA07A, #FFEC8B, #98FB98, #87CEFA, #DDA0DD, #FFB6C1, #FFDAB9, #C1FFC1, #B0E0E6, #FFA07A
+                                                      );
+                                                  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); /* Efeito de brilho */
+                                                background-size: 200% 3px;
+                                                  padding: 12px 0 12px 0; /* Aumentar o padding inferior */
+                                                  background-repeat: no-repeat;
+                                                  background-position: 100% 0%, 100% 100%; /* Definido para a parte superior e inferior */
+                                                  animation: rainbowSlide 6s linear infinite; 
+                                                  cursor: pointer;
+                                              }
+                                              
+                                          
+                                              .chatlog__date {
+                                                  font-size: 0.8rem; 
+                                                  display: block; 
+                                                  text-align: right;
+                                                  margin-top: -10px; 
+                                              }
+
+                                              .discord-button {
+                                                  background-color: blue; /* Cor padrão */
+                                                  color: white;
+                                                  border: none;
+                                                  padding: 10px 20px;
+                                                  margin-top: 10px;
+                                                  border-radius: 5px;
+                                                  cursor: pointer;
+                                                  transition: background-color 0.3s, transform 0.1s; /* Adiciona uma transição ao background-color e ao transform */
+                                              }
+                                          
+                                              .discord-button:hover {
+                                                  background-color: lightblue; /* Cor quando o mouse está sobre o botão */
+                                              }
+                                          
+                                              .discord-button:active {
+                                                  transform: scale(0.95); /* Reduz o tamanho do botão quando é clicado */
+                                              }
+
+                                              .video-player {
+                                                  position: relative;
+                                                  width: 320px;
+                                                  height: 240px;
+                                              }
+                                          
+                                              .controls {
+                                                  position: absolute;
+                                                  bottom: 0;
+                                                  width: 100%;
+                                                  background-color: rgba(0, 0, 0, 0.5);
+                                                  display: flex;
+                                                  align-items: center;
+                                                  justify-content: center;
+                                                  gap: 10px;
+                                              }
+                                          
+                                              button {
+                                                  background-color: white;
+                                                  border: none;
+                                                  padding: 4px 8px; /* Ajuste o padding aqui para alterar o tamanho do botão */
+                                                  cursor: pointer;
+                                                  font-size: 12px; /* Ajuste o tamanho da fonte aqui */
+                                              }
+
+                                              .thumbnail {
+                                                  width: auto;
+                                                  max-width: 64px;
+                                                  max-height: 32px;
+                                                  border-radius: 0%;
+                                                  padding: 6px;
+                                                  opacity: 0.42; 
+                                                  transition: box-shadow 0.50s ease, opacity 0.65s ease, transform 0.65s ease;
+                                                  box-shadow: 0 4px 16px rgba(0,0,0,0.8);
+                                                  margin-top: 18; /* Adiciona espaçamento no topo */
+                                                  margin-bottom: 14; /* Adiciona espaçamento embaixo */
+                                              }
+                                              
+                                              .thumbnail:hover {
+                                                  box-shadow: 0px 0px 32px 0px rgba(255, 255, 255, 0.6);
+                                                  opacity: 1;
+                                                  cursor: pointer; /* Adiciona esta linha */
+                                              }
+
+                                              @keyframes pulse {
+                                                  0%, 100% { 
+                                                      box-shadow: 0 0 5px #FFF;
+                                                  }
+                                                  50% { 
+                                                      box-shadow: 0 0 12px #FFF, 0 0 26px #FFF; 
+                                                  }
+                                              }
+                                              
+                                              @keyframes fadeOutPulse {
+                                                  from {
+                                                      box-shadow: 0 0 5px #FFF;
+                                                  }
+                                                  to {
+                                                      box-shadow: 0 0 0px transparent;
+                                                  }
+                                              }
+                                              
+                                              .shadow-container {
+                                                  display: inline-block;
+                                                  border-radius: 20px;
+                                                  overflow: hidden;
+                                              }
+                                              
+                                              .focused-message {
+                                                  animation: pulse 1.5s infinite; 
+                                                  border-radius: 10px;  
+                                              
+                                              }
+                                              
+                                              .fade-out {
+                                                  animation: fadeOutPulse 3s forwards;
+                                                  border-radius: 10px;  
+                                              
+                                              }
+
+                                              .error-text {
+                                                  color: #fff;
+                                                  display: inline-block;
+                                              }
+                                              
+                                              .error-text span {
+                                                  position: relative;
+                                                  display: inline-block;
+                                                  animation: glitchChar 1s infinite alternate;
+                                              }
+                                              
+                                              @keyframes glitchChar {
+                                                  0%, 100% { transform: translateY(0); }
+                                                  33% { transform: translateY(-1px); }
+                                                  66% { transform: translateY(1px); }
+                                              }
+                                              
+                                              .error-text span:nth-child(odd) {
+                                                  animation-delay: 0.2s;
+                                              }
+                                              
+                                              .error-text span:nth-child(4n) {
+                                                  animation-delay: 0.4s;
+                                              }
+                                              
+                                              .error-text span:nth-child(5n) {
+                                                  animation-delay: 0.6s;
+                                              }
+                                              .tooltip {
+                                                position: relative;
+                                                display: inline-block;
+                                              }
+                                              
+                                              .tooltipIcon {
+                                                background-color: #555;
+                                                color: #fff;
+                                                text-align: center;
+                                                border-radius: 50%;
+                                                width: 25px;
+                                                height: 25px;
+                                                display: inline-block;
+                                                line-height: 25px;
+                                                cursor: help;
+                                              }
+                                              
+                                              .tooltipText {
+                                                visibility: hidden;
+                                                width: 220px;
+                                                background-color: #555;
+                                                color: #fff;
+                                                text-align: center;
+                                                border-radius: 6px;
+                                                padding: 20px 20;
+                                                position: absolute;
+                                                z-index: 1;
+                                                bottom: 125%;
+                                                left: 50%;
+                                                margin-left: -110px; /* Use metade da largura do tooltipText */
+                                                opacity: 0;
+                                                transition: opacity 0.3s;
+                                              }
+                                              
+                                              .tooltip:hover .tooltipText {
+                                                visibility: visible;
+                                                opacity: 1;
+                                              }
+
+                                              .modal {
+                                                display: none; /* Escondido por padrão */
+                                                position: fixed; /* Fica em posição fixa */
+                                                z-index: 1; /* Fica no topo */
+                                                padding-top: 100px; /* Localização do box */
+                                                left: 0;
+                                                top: 0;
+                                                width: 100%; /* Largura total */
+                                                height: 100%; /* Altura total */
+                                                overflow: auto; /* Habilita scroll se necessário */
+                                                background-color: rgb(0,0,0); /* Fallback color */
+                                                background-color: rgba(0,0,0,0.9); /* Cor do background com opacidade */
+                                              }
+
+                                              /* Estilo da Imagem Modal */
+                                              .modal-content {
+                                                margin: auto;
+                                                display: block;
+                                                width: 80%;
+                                                max-width: 700px;
+                                              }
+
+                                              /* Caption da Imagem */
+                                              #caption {
+                                                margin: auto;
+                                                display: block;
+                                                width: 80%;
+                                                max-width: 700px;
+                                                text-align: center;
+                                                color: #ccc;
+                                                padding: 10px 0;
+                                                height: 150px;
+                                              }
+
+                                              /* Botão de Fechar (x) */
+                                              .close {
+                                                position: absolute;
+                                                top: 15px;
+                                                right: 35px;
+                                                color: #f1f1f1;
+                                                font-size: 40px;
+                                                font-weight: bold;
+                                                transition: 0.3s;
+                                              }
+
+                                              .close:hover,
+                                              .close:focus {
+                                                color: #bbb;
+                                                text-decoration: none;
+                                                cursor: pointer;
+                                              }
+                                              
+                                      </style>
+                                      </head>
+                                      <body>
+                                            <div id="protecaoSenha">
+                                            <div class="tooltip">
+                                            <span class="tooltipIcon" onmouseover="mostrarTooltip()" onclick="mostrarTooltip()">?</span>
+                                            <span class="tooltipText" id="tooltipText">
+                                            Para acessar o transcript, utilize a chave fornecida via mensagem direta (DM). Se encontrar dificuldades, entre na call de suporte.</span>
+                                            </div>
+                                            <input type="password" id="senha" placeholder="Digite a chave">
+                                            <div id="mensagemErro" class="mensagemErro">Contate o suporte</div> <!-- Mensagem logo após o campo de senha -->
+                                            <button onclick="verificarSenha()">Entrar</button>
+                                            </div>
+
+                                            <div id="myModal" class="modal">
+                                              <span class="close">&times;</span>
+                                              <img class="modal-content" id="img01">
+                                              <div id="caption"></div>
+                                            </div>
+
+                                            <script>
+
+                                            var encoded = "cGNj";
+
+                                            // Função para abrir o modal
+                                            function openModal(src, alt) {
+                                              var modal = document.getElementById('myModal');
+                                              modal.style.display = "block"; 
+                                              modal.style.opacity = 1; 
+                                              modal.style.visibility = "visible"; 
+                                              document.getElementById('img01').src = src;
+                                              document.getElementById('caption').innerHTML = alt;
+                                            }
+                                            
+                                            // Fechar o modal com o "X"
+                                            var span = document.getElementsByClassName("close")[0];
+                                            span.onclick = function() {
+                                              var modal = document.getElementById('myModal');
+                                              modal.style.opacity = 0; // Inicia a transição para ficar transparente
+                                              modal.style.visibility = "hidden"; // Torna o modal invisível após a transição
+                                              setTimeout(function() {
+                                                modal.style.display = "none"; // Esconde o modal após a transição
+                                              }, 500); // Ajuste o tempo de acordo com a duração da sua transição
+                                            }
+                                            
+                                            // Fechar o modal clicando fora dele
+                                            window.onclick = function(event) {
+                                              var modal = document.getElementById('myModal');
+                                              if (event.target == modal) {
+                                                modal.style.opacity = 0;
+                                                modal.style.visibility = "hidden";
+                                                setTimeout(function() {
+                                                  modal.style.display = "none";
+                                                }, 500);
+                                              }
+                                            }
+                                            
+                                            // Fechar o modal com a tecla ESC
+                                            document.onkeydown = function(event) {
+                                              var modal = document.getElementById('myModal');
+                                              if (event.keyCode == 27) { // Código da tecla ESC
+                                                modal.style.opacity = 0;
+                                                modal.style.visibility = "hidden";
+                                                setTimeout(function() {
+                                                  modal.style.display = "none";
+                                                }, 500);
+                                              }
+                                            }                              
+
+                                            function aplicarEstiloAposLogin() {
+                                              // Aplica o estilo padrão ao body
+                                              document.body.style.fontFamily = '"Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif';
+                                              document.body.style.backgroundColor = "#36393e";
+                                              document.body.style.color = "#dcddde";
+                                              document.body.style.fontSize = "17px";
+                                              document.body.style.fontWeight = "400";
+                                              document.body.style.display = "block";
+                                              document.body.style.alignItems = "normal";
+                                              document.body.style.justifyContent = "normal";
+                                              document.body.style.height = "auto"; // Ajuste conforme necessário para a página de transcript
+                                              document.body.style.background = "none";
+                                              document.body.style.margin = "0"; // Mantém a margem zerada
+                                              document.body.style.padding = "0"; // Mantém o padding zerado
+                                              // Remove o gradiente de fundo, se aplicado anteriormente
+                                              document.body.style.background = "#36393e"; // Define o fundo para a cor sólida padrão
+                                            }
+
+                                            var tentativas = 0;
+
+                                            function verificarSenha() {
+
+                                            var decoded = atob(encoded);
+
+                                            var senha = document.getElementById("senha").value;
+
+                                            tentativas++;
+
+                                            if (senha == decoded) { 
+                                                document.getElementById("conteudoProtegido").style.display = "block";
+                                                document.getElementById("protecaoSenha").style.display = "none";
+                                                aplicarEstiloAposLogin();
+                                            } else if (tentativas > 3) {
+                                                document.getElementById("mensagemErro").style.display = "block";
+                                            } else {
+                                                alert("A senha está incorreta!");
+                                            }
+                                            }
+
+                                            </script>
+
+                                            <div id="conteudoProtegido">
+
+                                          <div class="header"><br>
+                                              <img src="data:image/webp;base64,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" alt="Logo do PCC - 011 RP" width="128" /> 
+                                              <br><br><div class="guild-name"><strong>PCC - 011 RP</strong></div>
+                                          </div>
+                                          <div class="header channel-name"><strong>denúncia-082</strong></div>
+                                          <script>
+                                              function scrollToMessage(event, messageId) {
+                                                  event.preventDefault();
+
+                                                  const targetMessage = document.getElementById("message-" + messageId);
+                                                  if (targetMessage) {
+                                                      targetMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                                                      targetMessage.classList.add('focused-message');
+
+                                                      setTimeout(() => {
+                                                          targetMessage.classList.remove('focused-message');
+                                                          targetMessage.classList.add('fade-out');
+                                                          
+                                                          setTimeout(() => {
+                                                              targetMessage.classList.remove('fade-out');
+                                                          }, 3000);
+                                                      }, 3000);
+                                                  }
+                                              }
+                                          </script>
+                                      </body>
+                                      
+                        <div class="chatlog">
+                            <div class="chatlog__message-group">
+                                <div class="chatlog__author-avatar-container">
+                                    <img class="chatlog__author-avatar" src="data:image/webp;base64,UklGRkgFAABXRUJQVlA4IDwFAACwGQCdASqAAIAAPm02l0ikIyIhJBQJcIANiWUKFrecKF+oT+T7/V09QG2h8y37Y+sfpjPoAeXH+wHww/uXXXPB3xqedj6r8b5Y/6LwB2EfyZyK/8dPNP1HVSzubzueet/s+Vb6V9g39bush6Iw3uhh2+AWf0w7fALPw87KtnC0u4cLsHwaHCuyQHrOQ6++pG7c8dylpMfNC9GuEfFN91LT6wvDytEvvfESL50+tk+vh/hynOb70a4YSjJv6F94GOO/YkfnZc+pxc5ezUqsZ2fYUNmeOHs4AP7/liAALf+Zs2Ra69bXgrWI8GcL1+wz4YzOlr4afTjCoh1RUw2mTWoVtFs3nrjBZGCEharuIfP/0K7ir8it1aH9Ufv6cDD1xEk9NeWDXowc+QR/+wySvivbXrrMnfFfU7VXiqtPkZNO+EBn827bpMzz8VS3ejPs5wlzmD5K1DwCp6E8ficqVA5lhRIvraiJ6kiHc4ncvL2RREhaH5dTNrJ2rwYi7DuewSCNjj31cG62AJa4cvj7kx1bL+rpO/5ZoqDW6TGv75/kUIrFEPP9aM+5ab/nRZ0VHR6fZaF/sPHWfifWyd6LG5avJOKnv7W3+0j4/87qy4Pb5VjmkA0tioTv4V1sp56zZIXK+vlTVgFt4dDZaJQzDeesgLUqXCF+FYhjy/v/HAo/XaGnAJCxfZs5e7lr5gFmbIgHjdd2xnzE6B5N7uvOWrC/3D/4KYAgNVHixlwulIHLHGMjeL52sIh9vKjlftqou99FktEvnGtGQ+PrF3VrJwcbiYHqCoOIfbIYUKsw8S7deD0G6ctoxhThljvKhFmez9xfZKw+1h8cv3TpvQ3aVByouiENsVb6N2OQm+vL2dZRx1n0pcgz6H+595j8WCIpYOiqAtd6WyoqUOqeCtqge+9r5z5ULBLz4eTBUc/1LE9RPGuwHtFS7e4R2ok9BCv3AHymkK8jAIQFepev7nDnYtMmysTDYUiJy0H1AgOjYj5OSyTbPM3Gpudk52IZxwF7YHz/BD3LVQn+SIK7EGMt20xCcPPa60viF5t0nDurH1PLVMP1Ic80jizLfBGzat/c4W9mi3naepFOYC+EYxRDWyUX1yF/k2GAsYF3I0xuUxPljFQ4zJD0+luWwi1yecQgxrrfZmCQtmqDHY4BrjJPSkmtiUrikQCwYDLg69DOQVDU1dDV4K+is+2pUyxY+Nq1vPcJeo2+rMXW6Ynk262I4iRuRqTnveHUSNbf40LVnxqeKTTIrSEi7Q+5b1Xb3tDGRczIHoLfWS6iplvfeEvbIVDyvyS6k2bNckH85d2PT/MxTm/Xv+t8uAtVF4YHbOOxhXhHbkwJuERs0o4LCOC1t2eZOOAsT4FHEQn5F1rtIPWT6xu3GrOUYOLPJ95O1kuVtSacIAP2mf16Z+daiOK5tvofh820w6/OmQZSQNoy48GNISgXo0R1qwrGRa6qPyJobFNb0XGFdiNkXT/6Do4CuZu8KpgvfLiLrn+RiLHivvtgI+SM/zP5zGO8lAl7k2Ey5mSiVp/lo1iOWFfI3UPPGySLWqcZAfhhAwe2ic4uzFFchro5nFN3c9uKhsfUSVwlPv+ThVhAweROY/tuf0dbwIOEsdB0j05GJxVXfl6mik182ck7ameeGlDnhAq5VbRyapWWG/zMAsDzP4NR/ueKEhWbltOc8DRtHRUMLOmxfzgd2N3hC/DIjn665kmBEJcPP/asCXwLub66MszJmtPbppw/myHx9EpzodiRYsBDajUiYuZ8ed19auMAAAAAAA==" alt="[BBOT] PCC">
+                                </div>
+                                <div class="chatlog__messages">
+                                <span class="chatlog__author-name" data-user-id="1223688315107016744">[BBOT] PCC :</span>
+                                <span class="chatlog__timestamp">(07/05/2024, 21:29:36)</span>
+                                    <div class="chatlog__message" data-message-id="1237562013241049121" id="message-1237562013241049121" title="Mensagem enviada: 5/8/2024, 12:29:36 AM">
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown preserve-whitespace"><span style="color: #5F9CC2">@Morte buxexa | 1102<span class="chatlog__role">(820687918192525343)</span></span> </div>
+                                        </div>
+                                <div class="chatlog__embed">
+                                    <div class="chatlog__embed-color-pill" style="background-color: rgb(255, 226, 0);"></div>
+                                    <div class="chatlog__embed-content-container">
+                                        <div class="chatlog__embed-content">
+                                            
+                                            <div class="chatlog__embed-text">
+                                                
+                                                <div class="chatlog__embed-description">
+                                                    <div class="markdown preserve-whitespace">Bem-vindo(a), para que a equipe resolva o seu caso de forma rápida e prática, informe o que aconteceu:              <br>                                                    <div class="chatlog<u>embed-content-container"><div class="chatlog</u>embed-content"><div class="chatlog__embed-text"><div class="pre pre--multiline nohighlight"> </div></div></div></div></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chatlog">
+                            <div class="chatlog__message-group">
+                                <div class="chatlog__author-avatar-container">
+                                    <img class="chatlog__author-avatar" src="data:image/webp;base64,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" alt="coringa3984">
+                                </div>
+                                <div class="chatlog__messages">
+                                <span class="chatlog__author-name" data-user-id="820687918192525343">Morte buxexa | 1102 :</span>
+                                <span class="chatlog__timestamp">(07/05/2024, 21:29:59)</span>
+                                    <div class="chatlog__message" data-message-id="1237562106795130940" id="message-1237562106795130940" title="Mensagem enviada: 5/8/2024, 12:29:59 AM">
+                                        <div class="chatlog__embed-description">
+                                            <img class="thumbnail" src="data:image/png;base64,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" alt="Anexo 1" style="width:100%;max-width:300px" onclick="openModal(this.src, 'Anexo 1')">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chatlog">
+                            <div class="chatlog__message-group">
+                                <div class="chatlog__author-avatar-container">
+                                    <img class="chatlog__author-avatar" src="data:image/webp;base64,UklGRoYEAABXRUJQVlA4IHoEAABQGwCdASqAAIAAPm00lEckIyIhKZXqeIANiWkA1b3EcdjerLq05DRe8KM1r8Kia6UiMohNr8inp8ptU16xqOLo07rU0UlnonmUn38rriRHyqSItwNB9lwRP8V1PyYZkSn7QX/JIJrnVGInIBSC/Mypw6jj5qkscZxXc2KPiq+7OEZCo5y5UBZ/vZQEZ3LdB+wLrY0NFwMqtsgERzUDQPJ0QaYOgxxNkHT6ML+Fifkyi7yxzS7gW3sffRAh1rBwn2JMssHyhHZ7Fyfphbgl7WVuGGhkKDqR/ycwSKkTmoT+Qvr2AAD+9r3bpGIuFEaTzLE1QHHgqzeDSXTz8xAjTDY4lEkzXVqGvm7+ycp3dM+qk78XZpDkS81dmET5CAf1rHaWOQAgHkvRNJFssDKXI491yYk2fTCVWXHZXVLSZf1PNFaztN+xT9t+IGowDpsxt8Wxy5RXSwpXFrmsu9YwuEyzA3Uwr/lxavr+VoDzbUOOR+K8Y/ntsSqsHERg5V1YC7Bjq2Hq3RIQZxY6xJQeqky5tlq9zylNs5XAqVtPMEwfYSQ7sSCI/RBrj45LWrRTwSNpRwCMySwI8yXVlb1tVPIC6vd1zmEsoBDoQIT+MTFuT6qO1wYH3nwXvCvAf9/0SJoQdH9ldabVV4OGx2qJOcZqNRCI4KhzvEXQcRoRwvZ8Jt1O/OaceGao1mFMna6xbEKupFzyc46DAIpqpWSBd8QmvxDq/mZWpQJm83Wa+vita5omicdq9BoCsxDd0s9vL/8J8ZM0hcctePll2PZsiTmM39QKs6LkFY6aodAQpVni1XIZ/1hlipa1T9Xr6Kov3OriJyyqDQlMBL4Ri1C3quScLDXo1680VyaSFbk4EShrXzzxnZYMmJoESDSieDUeP+JC3Yd7f299ZLbV6W+pKTFdx5MAt5fXNZgEW6onj4ALMTY4lD7NN7SuFVRkym+MtHSFuLZA2VofAurbIwlQhl92uvyHptNCIR/vK81hYSfR88H2qTfT3L+ix9p3AUIPjCE9A0gLXk2fwdpqalNeYqYe+Gr/Uj6qfR6KqWjcZKl+8OOzLd5dSIi4riNtQq3QWSprr+tHnoD/QtzHC8IHCwD9vZ6O5Xdrjb1xwvzcJZrwDGOttbz201yVhcRu18yv8ZJUkElFc/LSWSCEpGGIW/rtY7j56Sd47pehF9PuXnwhchWyRTSZlI5pT4AbhlU66miaPytkMvWz86ZkD5wSWvtIZQcJdHv0zOg0oI8n5yeMB9Uy4s2yNYI886T/1kzl+UPDNsDnGcAfG5ilvWGQGLpIki5FjJTjBMKwi8Y/KuiaKgEcSjnJI1m4VUfhHZC5toHgrReRWL7GASfdSDKsoppLuFwDanUA7kPIQE2YVHHQ9LrAkHEH6ajt4MVKjoY927m24YPmRgGS+TySst3bfuQ4t2kYutNTNiutlABI6jrymAPN7JLo5cx7iSbP5nfThTTJK5rxV/Ci6ZWocpB7xa4HVe5GpumIPgbqE8UVWRaiSs0giTqDGPSAAAA=" alt="66rique">
+                                </div>
+                                <div class="chatlog__messages">
+                                <span class="chatlog__author-name" data-user-id="808879334324305961">rique | 1314 :</span>
+                                <span class="chatlog__timestamp">(07/05/2024, 21:50:10)</span>
+                                    <div class="chatlog__message" data-message-id="1237567188232175638" id="message-1237567188232175638" title="Mensagem enviada: 5/8/2024, 12:50:10 AM">
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown preserve-whitespace">Tela cheia morte </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chatlog">
+                            <div class="chatlog__message-group">
+                                <div class="chatlog__author-avatar-container">
+                                    <img class="chatlog__author-avatar" src="data:image/webp;base64,UklGRoYEAABXRUJQVlA4IHoEAABQGwCdASqAAIAAPm00lEckIyIhKZXqeIANiWkA1b3EcdjerLq05DRe8KM1r8Kia6UiMohNr8inp8ptU16xqOLo07rU0UlnonmUn38rriRHyqSItwNB9lwRP8V1PyYZkSn7QX/JIJrnVGInIBSC/Mypw6jj5qkscZxXc2KPiq+7OEZCo5y5UBZ/vZQEZ3LdB+wLrY0NFwMqtsgERzUDQPJ0QaYOgxxNkHT6ML+Fifkyi7yxzS7gW3sffRAh1rBwn2JMssHyhHZ7Fyfphbgl7WVuGGhkKDqR/ycwSKkTmoT+Qvr2AAD+9r3bpGIuFEaTzLE1QHHgqzeDSXTz8xAjTDY4lEkzXVqGvm7+ycp3dM+qk78XZpDkS81dmET5CAf1rHaWOQAgHkvRNJFssDKXI491yYk2fTCVWXHZXVLSZf1PNFaztN+xT9t+IGowDpsxt8Wxy5RXSwpXFrmsu9YwuEyzA3Uwr/lxavr+VoDzbUOOR+K8Y/ntsSqsHERg5V1YC7Bjq2Hq3RIQZxY6xJQeqky5tlq9zylNs5XAqVtPMEwfYSQ7sSCI/RBrj45LWrRTwSNpRwCMySwI8yXVlb1tVPIC6vd1zmEsoBDoQIT+MTFuT6qO1wYH3nwXvCvAf9/0SJoQdH9ldabVV4OGx2qJOcZqNRCI4KhzvEXQcRoRwvZ8Jt1O/OaceGao1mFMna6xbEKupFzyc46DAIpqpWSBd8QmvxDq/mZWpQJm83Wa+vita5omicdq9BoCsxDd0s9vL/8J8ZM0hcctePll2PZsiTmM39QKs6LkFY6aodAQpVni1XIZ/1hlipa1T9Xr6Kov3OriJyyqDQlMBL4Ri1C3quScLDXo1680VyaSFbk4EShrXzzxnZYMmJoESDSieDUeP+JC3Yd7f299ZLbV6W+pKTFdx5MAt5fXNZgEW6onj4ALMTY4lD7NN7SuFVRkym+MtHSFuLZA2VofAurbIwlQhl92uvyHptNCIR/vK81hYSfR88H2qTfT3L+ix9p3AUIPjCE9A0gLXk2fwdpqalNeYqYe+Gr/Uj6qfR6KqWjcZKl+8OOzLd5dSIi4riNtQq3QWSprr+tHnoD/QtzHC8IHCwD9vZ6O5Xdrjb1xwvzcJZrwDGOttbz201yVhcRu18yv8ZJUkElFc/LSWSCEpGGIW/rtY7j56Sd47pehF9PuXnwhchWyRTSZlI5pT4AbhlU66miaPytkMvWz86ZkD5wSWvtIZQcJdHv0zOg0oI8n5yeMB9Uy4s2yNYI886T/1kzl+UPDNsDnGcAfG5ilvWGQGLpIki5FjJTjBMKwi8Y/KuiaKgEcSjnJI1m4VUfhHZC5toHgrReRWL7GASfdSDKsoppLuFwDanUA7kPIQE2YVHHQ9LrAkHEH6ajt4MVKjoY927m24YPmRgGS+TySst3bfuQ4t2kYutNTNiutlABI6jrymAPN7JLo5cx7iSbP5nfThTTJK5rxV/Ci6ZWocpB7xa4HVe5GpumIPgbqE8UVWRaiSs0giTqDGPSAAAA=" alt="66rique">
+                                </div>
+                                <div class="chatlog__messages">
+                                <span class="chatlog__author-name" data-user-id="808879334324305961">rique | 1314 :</span>
+                                <span class="chatlog__timestamp">(07/05/2024, 21:50:22)</span>
+                                    <div class="chatlog__message" data-message-id="1237567239398625322" id="message-1237567239398625322" title="Mensagem enviada: 5/8/2024, 12:50:22 AM">
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown preserve-whitespace">Com data e hora </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="chatlog__message-group">
+                            <div class="chatlog__reference">
+                                <img class="chatlog__reference-avatar" src="data:image/webp;base64,UklGRkgFAABXRUJQVlA4IDwFAACwGQCdASqAAIAAPm02l0ikIyIhJBQJcIANiWUKFrecKF+oT+T7/V09QG2h8y37Y+sfpjPoAeXH+wHww/uXXXPB3xqedj6r8b5Y/6LwB2EfyZyK/8dPNP1HVSzubzueet/s+Vb6V9g39bush6Iw3uhh2+AWf0w7fALPw87KtnC0u4cLsHwaHCuyQHrOQ6++pG7c8dylpMfNC9GuEfFN91LT6wvDytEvvfESL50+tk+vh/hynOb70a4YSjJv6F94GOO/YkfnZc+pxc5ezUqsZ2fYUNmeOHs4AP7/liAALf+Zs2Ra69bXgrWI8GcL1+wz4YzOlr4afTjCoh1RUw2mTWoVtFs3nrjBZGCEharuIfP/0K7ir8it1aH9Ufv6cDD1xEk9NeWDXowc+QR/+wySvivbXrrMnfFfU7VXiqtPkZNO+EBn827bpMzz8VS3ejPs5wlzmD5K1DwCp6E8ficqVA5lhRIvraiJ6kiHc4ncvL2RREhaH5dTNrJ2rwYi7DuewSCNjj31cG62AJa4cvj7kx1bL+rpO/5ZoqDW6TGv75/kUIrFEPP9aM+5ab/nRZ0VHR6fZaF/sPHWfifWyd6LG5avJOKnv7W3+0j4/87qy4Pb5VjmkA0tioTv4V1sp56zZIXK+vlTVgFt4dDZaJQzDeesgLUqXCF+FYhjy/v/HAo/XaGnAJCxfZs5e7lr5gFmbIgHjdd2xnzE6B5N7uvOWrC/3D/4KYAgNVHixlwulIHLHGMjeL52sIh9vKjlftqou99FktEvnGtGQ+PrF3VrJwcbiYHqCoOIfbIYUKsw8S7deD0G6ctoxhThljvKhFmez9xfZKw+1h8cv3TpvQ3aVByouiENsVb6N2OQm+vL2dZRx1n0pcgz6H+595j8WCIpYOiqAtd6WyoqUOqeCtqge+9r5z5ULBLz4eTBUc/1LE9RPGuwHtFS7e4R2ok9BCv3AHymkK8jAIQFepev7nDnYtMmysTDYUiJy0H1AgOjYj5OSyTbPM3Gpudk52IZxwF7YHz/BD3LVQn+SIK7EGMt20xCcPPa60viF5t0nDurH1PLVMP1Ic80jizLfBGzat/c4W9mi3naepFOYC+EYxRDWyUX1yF/k2GAsYF3I0xuUxPljFQ4zJD0+luWwi1yecQgxrrfZmCQtmqDHY4BrjJPSkmtiUrikQCwYDLg69DOQVDU1dDV4K+is+2pUyxY+Nq1vPcJeo2+rMXW6Ynk262I4iRuRqTnveHUSNbf40LVnxqeKTTIrSEi7Q+5b1Xb3tDGRczIHoLfWS6iplvfeEvbIVDyvyS6k2bNckH85d2PT/MxTm/Xv+t8uAtVF4YHbOOxhXhHbkwJuERs0o4LCOC1t2eZOOAsT4FHEQn5F1rtIPWT6xu3GrOUYOLPJ95O1kuVtSacIAP2mf16Z+daiOK5tvofh820w6/OmQZSQNoy48GNISgXo0R1qwrGRa6qPyJobFNb0XGFdiNkXT/6Do4CuZu8KpgvfLiLrn+RiLHivvtgI+SM/zP5zGO8lAl7k2Ey5mSiVp/lo1iOWFfI3UPPGySLWqcZAfhhAwe2ic4uzFFchro5nFN3c9uKhsfUSVwlPv+ThVhAweROY/tuf0dbwIOEsdB0j05GJxVXfl6mik182ck7ameeGlDnhAq5VbRyapWWG/zMAsDzP4NR/ueKEhWbltOc8DRtHRUMLOmxfzgd2N3hC/DIjn665kmBEJcPP/asCXwLub66MszJmtPbppw/myHx9EpzodiRYsBDajUiYuZ8ed19auMAAAAAAA==" alt="Avatar" loading="lazy">
+                                <span class="chatlog__reference-name" title="[BBOT] PCC">[BBOT] PCC :</span>
+                                <div class="chatlog__reference-content">
+                                     <span class="chatlog__reference-link" onclick="scrollToMessage(event, '1237562013241049121')">
+                                      <span style="color: #5F9CC2">@Morte buxexa | 1102<span class="chatlog__role">(820687918192525343)</span></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="chatlog__author-avatar-container">
+                                <img class="chatlog__author-avatar" src="data:image/webp;base64,UklGRkgFAABXRUJQVlA4IDwFAACwGQCdASqAAIAAPm02l0ikIyIhJBQJcIANiWUKFrecKF+oT+T7/V09QG2h8y37Y+sfpjPoAeXH+wHww/uXXXPB3xqedj6r8b5Y/6LwB2EfyZyK/8dPNP1HVSzubzueet/s+Vb6V9g39bush6Iw3uhh2+AWf0w7fALPw87KtnC0u4cLsHwaHCuyQHrOQ6++pG7c8dylpMfNC9GuEfFN91LT6wvDytEvvfESL50+tk+vh/hynOb70a4YSjJv6F94GOO/YkfnZc+pxc5ezUqsZ2fYUNmeOHs4AP7/liAALf+Zs2Ra69bXgrWI8GcL1+wz4YzOlr4afTjCoh1RUw2mTWoVtFs3nrjBZGCEharuIfP/0K7ir8it1aH9Ufv6cDD1xEk9NeWDXowc+QR/+wySvivbXrrMnfFfU7VXiqtPkZNO+EBn827bpMzz8VS3ejPs5wlzmD5K1DwCp6E8ficqVA5lhRIvraiJ6kiHc4ncvL2RREhaH5dTNrJ2rwYi7DuewSCNjj31cG62AJa4cvj7kx1bL+rpO/5ZoqDW6TGv75/kUIrFEPP9aM+5ab/nRZ0VHR6fZaF/sPHWfifWyd6LG5avJOKnv7W3+0j4/87qy4Pb5VjmkA0tioTv4V1sp56zZIXK+vlTVgFt4dDZaJQzDeesgLUqXCF+FYhjy/v/HAo/XaGnAJCxfZs5e7lr5gFmbIgHjdd2xnzE6B5N7uvOWrC/3D/4KYAgNVHixlwulIHLHGMjeL52sIh9vKjlftqou99FktEvnGtGQ+PrF3VrJwcbiYHqCoOIfbIYUKsw8S7deD0G6ctoxhThljvKhFmez9xfZKw+1h8cv3TpvQ3aVByouiENsVb6N2OQm+vL2dZRx1n0pcgz6H+595j8WCIpYOiqAtd6WyoqUOqeCtqge+9r5z5ULBLz4eTBUc/1LE9RPGuwHtFS7e4R2ok9BCv3AHymkK8jAIQFepev7nDnYtMmysTDYUiJy0H1AgOjYj5OSyTbPM3Gpudk52IZxwF7YHz/BD3LVQn+SIK7EGMt20xCcPPa60viF5t0nDurH1PLVMP1Ic80jizLfBGzat/c4W9mi3naepFOYC+EYxRDWyUX1yF/k2GAsYF3I0xuUxPljFQ4zJD0+luWwi1yecQgxrrfZmCQtmqDHY4BrjJPSkmtiUrikQCwYDLg69DOQVDU1dDV4K+is+2pUyxY+Nq1vPcJeo2+rMXW6Ynk262I4iRuRqTnveHUSNbf40LVnxqeKTTIrSEi7Q+5b1Xb3tDGRczIHoLfWS6iplvfeEvbIVDyvyS6k2bNckH85d2PT/MxTm/Xv+t8uAtVF4YHbOOxhXhHbkwJuERs0o4LCOC1t2eZOOAsT4FHEQn5F1rtIPWT6xu3GrOUYOLPJ95O1kuVtSacIAP2mf16Z+daiOK5tvofh820w6/OmQZSQNoy48GNISgXo0R1qwrGRa6qPyJobFNb0XGFdiNkXT/6Do4CuZu8KpgvfLiLrn+RiLHivvtgI+SM/zP5zGO8lAl7k2Ey5mSiVp/lo1iOWFfI3UPPGySLWqcZAfhhAwe2ic4uzFFchro5nFN3c9uKhsfUSVwlPv+ThVhAweROY/tuf0dbwIOEsdB0j05GJxVXfl6mik182ck7ameeGlDnhAq5VbRyapWWG/zMAsDzP4NR/ueKEhWbltOc8DRtHRUMLOmxfzgd2N3hC/DIjn665kmBEJcPP/asCXwLub66MszJmtPbppw/myHx9EpzodiRYsBDajUiYuZ8ed19auMAAAAAAA==" alt="Avatar">
+                            </div>
+                            <div class="chatlog__messages">
+                                <span class="chatlog__author-name" title="[BBOT] PCC" data-user-id="1223688315107016744">[BBOT] PCC :</span>
+                                <span class="chatlog__timestamp">(10/05/2024, 15:03:03)</span>
+                                <div class="chatlog__message" data-message-id="1238551898563547242" id="message-1238551898563547242" title="Mensagem enviada: 5/10/2024, 6:03:03 PM">
+                                    <div class="chatlog__embed-description">
+                                        <div class="markdown">
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                            <div class="chatlog__embed">
+                                                <div class="chatlog__embed-color-pill" style="background-color: rgb(0, 255, 0);"></div>
+                                                <div class="chatlog__embed-content-container">
+                                                    <div class="chatlog__embed-content">
+                                                        
+                                                        <div class="chatlog__embed-text">
+                                                            
+                                                            <div class="chatlog__embed-title">
+                                                                <a href="#" target="_blank">✅ TRANSCRIPT GERADO</a>
+                                                            </div>
+                                                            <div class="chatlog__embed-description">
+                                                                <div class="markdown preserve-whitespace">:setadupla: Seu ticket foi resolvido e será fechado automaticamente em <strong>7 segundos</strong>.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+            </body>
+            </html>
